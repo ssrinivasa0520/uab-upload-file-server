@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
@@ -98,7 +98,9 @@ app.post('/upload', passport.authenticate('jwt', { session: false }), upload.sin
                 .insert({ userid: req.user.id, filename: originalname, link: data.Location }, ['id'])
                 .into('attachment');
 
-            await knex.insert(emails.map(email => ({ attachmentid: attachmentId, email }))).into('email');
+            if (emails.length) {
+                await knex.insert(emails.map(email => ({ attachmentid: attachmentId, email }))).into('email');
+            }
 
 
             res.send(data.Location);
