@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 var corsOptions = {
     credentials: true,
-    origin: process.env.NEXT_SERVER,
+    origin: "*",
     allowedHeaders: ["Content-Type", "Authorization", "Content-Length", "Accept", "X-Requested-With"],
     methods: ['GET', 'POST', 'DELETE', 'PUT']
 }
